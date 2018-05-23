@@ -53,10 +53,52 @@ def signout():
     return "ok"
 # @token_required
 @api.route('/surveys/',methods=['GET','POST'])
-def survey_list(user):
+def survey_list():
     # 如果是GET请求，返回所有surveys
+    if request.method == 'GET':
+        surverys = Survey.query.all()
+        data = {
+            "surveys":[ survery.to_dict() for survery in surverys]
+        }
+        print(data)
+        return jsonify(data)
     # 如果是POST请求，添加一个survey到 surveys中
-    return "ok"
+    elif request.method =='POST':
+        '''
+        url:  /api/surveys/
+        method: POST
+        json data: 
+        {
+            "survey":{
+                "name":"如何提高注意力",
+                "questions":[
+                    { 
+                        "text":"",
+                        "choies":[]
+                     },
+                    {  
+                        "text":"",
+                        "choies":[]
+                    },
+                ]
+            }
+
+        }
+
+        '''
+        data = request.get_json()
+        survey = Survey(name=data['name'])
+        questions = []
+        for question in data['questions']:
+            # q代表着一个实例，一条questions表中的记录
+            q = Question(text=question['text'])
+            q.choices = [Choice(text=choice['text']) for choice in question['choices']]
+            questions.append(q)
+        survey.questions = questions
+        survey.creator = User.query.get(1)
+        db.session.add(survey)
+        db.session.commit()
+        return jsonify(survey.to_dict()),201
 
 # @token_required
 @api.route('/survey/<int:id>/',methods=['GET','PUT','DELETE'])
