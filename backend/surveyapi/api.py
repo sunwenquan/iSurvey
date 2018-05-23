@@ -6,7 +6,7 @@ RESTful  API
 
 from flask import Blueprint,jsonify,request
 from flask import current_app
-from .models import Survey,Question,Choice,User
+from .models import Survey,Question,Choice,User,db
 from .decorator import  token_required
 from datetime import datetime, timedelta
 
@@ -35,7 +35,18 @@ def login():
 
 @api.route('/signin/',methods=['POST'])
 def signin():
-    return "ok"
+    '''
+    url: /signin/
+    method:POST
+    json data : { "email":"gavinsun@qq.com",
+        "password":"888888"
+    }
+    '''
+    data = request.get_json()
+    user = User(**data)
+    db.session.add(user)
+    db.session.commit()
+    return jsonify(user.to_dict()),201
 
 @api.route('/signout/',methods=['POST'])
 def signout():
