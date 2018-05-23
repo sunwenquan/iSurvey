@@ -7,7 +7,7 @@ RESTful  API
 from flask import Blueprint,jsonify,request
 from flask import current_app
 from .models import Survey,Question,Choice,User
-from .decorator import token_requierd 
+from .decorator import  token_required
 from datetime import datetime, timedelta
 
 api = Blueprint('api',__name__)
@@ -40,15 +40,15 @@ def signin():
 @api.route('/signout/',methods=['POST'])
 def signout():
     return "ok"
-@token_requierd
+# @token_required
 @api.route('/surveys/',methods=['GET','POST'])
 def survey_list(user):
     # 如果是GET请求，返回所有surveys
     # 如果是POST请求，添加一个survey到 surveys中
     return "ok"
 
-@token_requierd
-@api.route('/survey/<int:id>/',methdos=['GET','PUT','DELETE'])
+# @token_required
+@api.route('/survey/<int:id>/',methods=['GET','PUT','DELETE'])
 def survey(id):
     # 如果是GET 请求，根据id返回指定的survey
     # 如果是PUT请求，根据id修改指定的survey

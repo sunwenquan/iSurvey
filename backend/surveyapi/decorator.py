@@ -23,7 +23,7 @@ def token_required(f):
         try:
             token = auth_headers[1]
             # 使用SECRET_KEY 解码
-            data =jwt.decode(token,current_app.config['SECRET_KEY']
+            data =jwt.decode(token,current_app.config['SECRET_KEY'])
             # 从解码获得的数据中获得sub键对应的邮箱
             email = data.get('sub')
             user = User.query.filter_by(email=email).first()

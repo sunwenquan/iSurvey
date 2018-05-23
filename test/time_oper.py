@@ -7,8 +7,8 @@ tz = pytz.timezone('Asia/Shanghai')
 # get local timezone  
 local_tz = get_localzone() 
 # get all_timezones 
-# all_timezones = pytz.all_timezones 
-# print(all_timezones)
+all_timezones = pytz.all_timezones 
+print(all_timezones)
 print(tz)
 print(local_tz)
 # 2. 获取时间
