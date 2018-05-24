@@ -2,6 +2,17 @@
 
 一个问卷调查项目
 
+## API概要说明
+
+| 请求方法 | 请求URL        | 描述                | 状态码 |
+| -------- | -------------- | ------------------- | ------ |
+| POST     | /api/signin/   | 注册                | 201    |
+| POST     | /api/login/    | 登录                | 201    |
+| GET      | /api/signout/  | 退出                | 200    |
+| POST     | /api/surveys/  | 添加问卷调查        | 201    |
+| GET      | /api/surveys/  | 获取所有问卷调查    | 200    |
+| GET      | /api/survey/2/ | 获得id为2的问卷调查 | 200    |
+
 ## 匿名问卷调查
 
 只关注调查结果，问题的各个选项被勾选多少次，choices.number/choices.choiced
