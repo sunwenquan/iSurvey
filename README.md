@@ -12,6 +12,77 @@
 | POST     | /api/surveys/  | 添加问卷调查        | 201    |
 | GET      | /api/surveys/  | 获取所有问卷调查    | 200    |
 | GET      | /api/survey/2/ | 获得id为2的问卷调查 | 200    |
+| PUT      | /api/survey/2/ | 修改id为2的问卷调查 | 201    |
+
+## 接口详细说明
+
+1. 登录
+
+   接口地址：http://127.0.0.1:5000/api/login/
+
+   请求方式：GET、POST
+
+   接口参数：
+
+   > 请求参数说明
+   >
+   > | 参数名称 | 类型   | 说明 |
+   > | -------- | ------ | ---- |
+   > | email    | string | 邮箱 |
+   > | password | string | 密码 |
+   > |          |        |      |
+   > |          |        |      |
+   >
+   > 返回参数说明
+   >
+   > | 参数名称      | 类型   | 说明                                |
+   > | ------------- | ------ | ----------------------------------- |
+   > | message       | string | 提示信息                            |
+   > | authenticated | bool   | true代表认证成功，false代表认证失败 |
+   > | token         | string | 认证成功时返回此字段                |
+   > |               |        |                                     |
+
+   示例
+
+   > 请求示例JSON
+   >
+   > ```json
+   > {
+   >     "email":"gavinsun@qq.com",
+   >     "password":"123456"
+   > }
+   > ```
+   >
+   > 返回示例JSON
+   >
+   > ```json
+   > {
+   >     "message":"认证成功", 
+   >     "authenticated":true,
+   >     "token":"IASDFASAFK23429877SDAN2334!FASD"
+   > }
+   > ```
+   >
+   > ```json
+   > {
+   >     "message":"认证失败", 
+   >     "authenticated":false,
+   > }
+   > ```
+
+   
+
+2. 注册
+
+3. 退出
+
+4. 添加问卷调查
+
+5. 获取所有问卷调查
+
+6. 获取某个问卷调查
+
+7. 提交问卷调查
 
 ## 匿名问卷调查
 
