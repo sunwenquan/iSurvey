@@ -35,13 +35,13 @@ api = Api()
 def get(resp):
     print(resp.json())
 
-@api.url('/api/todos/',method='POST',json={'content':"YYYYYYYYYYY"})
+@api.url('/api/surveys/',method='POST',json={'content':"YYYYYYYYYYY"})
 def add(resp):
     print(resp.json())
 
-@api.url('/api/todos/16/',method='DELETE')
+@api.url('/api/survey_admin/1/',method='DELETE')
 def delete(resp):
-    print(resp.json())
+    print(resp)
 
 
 json = {

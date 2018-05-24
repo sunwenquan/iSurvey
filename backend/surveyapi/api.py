@@ -122,7 +122,14 @@ def survey_admin(id):
         db.session.commit()
         return jsonify(survey.to_dict()),201
     # 如果是DELETE请求，根据id删除指定的survey
-    return "ok"
+    elif request.method == 'DELETE':
+        for question in survey.questions:
+            for choice in question.choices:
+                db.session.delete(choice)
+            db.session.delete(question)
+        db.session.delete(survey)
+        db.session.commit()
+        return "删除成功"
 
 # 普通用户
 @api.route('/survey/<int:id>/',methods=['GET','PUT'])
