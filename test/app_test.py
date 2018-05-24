@@ -31,7 +31,7 @@ class Api():
 
 api = Api()
 
-@api.url('/api/todos/',method='GET')
+@api.url('/api/survey/1/',method='GET')
 def get(resp):
     print(resp.json())
 
@@ -43,11 +43,42 @@ def add(resp):
 def delete(resp):
     print(resp.json())
 
-@api.url('/api/todos/17/',method='PUT',json={'content':"uuuuuuuu"})
+
+json = {
+    
+        "name": "如何提高注意力",
+        "questions": [
+            {
+                "text": "",
+                "choices": [
+                    {
+                        "text": "A.很好",
+                        "selected": False
+                    },
+                    {
+                        "text": "B.好",
+                        "selected": False
+                    },
+                    {
+                        "text": "C.不好",
+                        "selected": False
+                    },
+                    {
+                        "text":"D.差",
+                        "selected":True 
+
+                    }
+                ]
+            }
+        ]
+    
+}
+
+
+@api.url('/api/survey/1/',method='PUT',json=json)
 def put(resp):
     print(resp.json())
 
-# get()
 # add()
 # delete()
 put()

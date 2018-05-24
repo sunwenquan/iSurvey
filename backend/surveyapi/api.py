@@ -103,8 +103,24 @@ def survey_list():
 # @token_required
 @api.route('/survey/<int:id>/',methods=['GET','PUT','DELETE'])
 def survey(id):
+    survey = Survey.query.get(id)
     # 如果是GET 请求，根据id返回指定的survey
+    if  request.method == 'GET':
+        return jsonify(survey.to_dict())
     # 如果是PUT请求，根据id修改指定的survey
+    elif request.method == 'PUT':
+        data = request.get_json()
+        questions = []
+        for question in data['questions']:
+            # q代表着一个实例，一条questions表中的记录
+            q = Question(text=question['text'])
+            q.choices = [Choice(text=choice['text']) for choice in question['choices']]
+            questions.append(q)
+        survey.questions = questions
+        # survey.creator = User.query.get(1)
+        db.session.add(survey)
+        db.session.commit()
+        return jsonify(survey.to_dict()),201
     # 如果是DELETE请求，根据id删除指定的survey
     return "ok"
 

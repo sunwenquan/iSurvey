@@ -7,7 +7,7 @@
                 "choies": [
                     {
                         "text": "A.很好",
-                        "selected": true
+                        "selected": false
                     },
                     {
                         "text": "B.好",
@@ -16,12 +16,13 @@
                     {
                         "text": "C.不好",
                         "selected": false
+                    },
+                    {
+                        "tesxt":"D.差",
+                        "selected": true
+
                     }
                 ]
-            },
-            {
-                "text": "",
-                "choies": []
             }
         ]
     
