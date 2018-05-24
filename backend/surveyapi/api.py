@@ -101,8 +101,8 @@ def survey_list():
         return jsonify(survey.to_dict()),201
 
 # @token_required
-@api.route('/survey/<int:id>/',methods=['GET','PUT','DELETE'])
-def survey(id):
+@api.route('/survey_admin/<int:id>/',methods=['GET','PUT','DELETE'])
+def survey_admin(id):
     survey = Survey.query.get(id)
     # 如果是GET 请求，根据id返回指定的survey
     if  request.method == 'GET':
@@ -120,6 +120,30 @@ def survey(id):
         # survey.creator = User.query.get(1)
         db.session.add(survey)
         db.session.commit()
+        return jsonify(survey.to_dict()),201
+    # 如果是DELETE请求，根据id删除指定的survey
+    return "ok"
+
+# 普通用户
+@api.route('/survey_admin/<int:id>/',methods=['GET','PUT'])
+def survery(id):
+    survey = Survey.query.get(id)
+    # 如果是GET 请求，根据id返回指定的survey
+    if  request.method == 'GET':
+        return jsonify(survey.to_dict())
+    # 如果是PUT请求，根据id修改指定的survey
+    elif request.method == 'PUT':
+        data = request.get_json()
+        for item in data['questions']:
+            #  获得用户所选择的选项的id
+            choice_id = item['choiced']
+            # 获得id为choice_id的选项
+            choice = Choice.query.get(choice_id) 
+            # 把用户所选择的选项+1
+            choice.choiced = choice.choiced + 1
+        # 更改到数据库
+        db.session.commit()
+
         return jsonify(survey.to_dict()),201
     # 如果是DELETE请求，根据id删除指定的survey
     return "ok"

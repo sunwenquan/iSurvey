@@ -47,28 +47,27 @@ def delete(resp):
 json = {
     
         "name": "如何提高注意力",
-        "questions": [
-            {
+        "questions": 
+        [
+            {   "id":1,
                 "text": "",
-                "choices": [
-                    {
-                        "text": "A.很好",
-                        "selected": False
-                    },
-                    {
-                        "text": "B.好",
-                        "selected": False
-                    },
-                    {
-                        "text": "C.不好",
-                        "selected": False
-                    },
-                    {
-                        "text":"D.差",
-                        "selected":True 
+                "choiced": 1,
+                    # {   "id":2,
+                    #     "text": "B.好",
+                    #     "selected": False
+                    # },
+                    # {
+                    #     "id":3,
+                    #     "text": "C.不好",
+                    #     "selected": False
+                    # },
+                    # {
+                    #     "id":4,
+                    #     "text":"D.差",
+                    #     "selected":True 
 
-                    }
-                ]
+                    # }
+                # ]
             }
         ]
     
