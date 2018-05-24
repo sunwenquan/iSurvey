@@ -1,5 +1,5 @@
+from surveyapi.app import create_app
 def main():
-    from surveyapi.app import create_app
     app = create_app()
     app.run()
 
