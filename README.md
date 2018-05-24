@@ -2,6 +2,16 @@
 
 一个问卷调查项目
 
+## 匿名问卷调查
+
+只关注调查结果，问题的各个选项被勾选多少次，choices.number/choices.choiced
+
+
+## 实名问卷调查
+1. 关注调查结果，问题的各个选项被勾选多少次，choises.number
+2. 关注每个人填写的调查表   id   users.id   choises.id  
+
+
 ## models设计
 
 ### User  用户表  __tablename__ = users

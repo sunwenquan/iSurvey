@@ -84,6 +84,7 @@ class Choice(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(100), nullable=False)
+    # 选项被选择的个数
     selected = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))

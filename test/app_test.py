@@ -49,25 +49,17 @@ json = {
         "name": "如何提高注意力",
         "questions": 
         [
+            {   "id":3,
+                "text": "",
+                "choiced": 8,
+            },
             {   "id":1,
                 "text": "",
                 "choiced": 1,
-                    # {   "id":2,
-                    #     "text": "B.好",
-                    #     "selected": False
-                    # },
-                    # {
-                    #     "id":3,
-                    #     "text": "C.不好",
-                    #     "selected": False
-                    # },
-                    # {
-                    #     "id":4,
-                    #     "text":"D.差",
-                    #     "selected":True 
-
-                    # }
-                # ]
+            },
+            {   "id":2,
+                "text": "",
+                "choiced": 5,
             }
         ]
     

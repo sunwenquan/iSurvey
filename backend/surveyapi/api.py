@@ -125,7 +125,7 @@ def survey_admin(id):
     return "ok"
 
 # 普通用户
-@api.route('/survey_admin/<int:id>/',methods=['GET','PUT'])
+@api.route('/survey/<int:id>/',methods=['GET','PUT'])
 def survery(id):
     survey = Survey.query.get(id)
     # 如果是GET 请求，根据id返回指定的survey
@@ -140,12 +140,9 @@ def survery(id):
             # 获得id为choice_id的选项
             choice = Choice.query.get(choice_id) 
             # 把用户所选择的选项+1
-            choice.choiced = choice.choiced + 1
+            choice.selected = choice.selected + 1
         # 更改到数据库
         db.session.commit()
-
         return jsonify(survey.to_dict()),201
-    # 如果是DELETE请求，根据id删除指定的survey
-    return "ok"
 
 
