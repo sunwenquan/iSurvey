@@ -7,7 +7,6 @@ RESTful  API
 from flask import Blueprint,jsonify,request
 from flask import current_app
 from .models import Survey,Question,Choice,User,db
-from .decorator import  token_required
 from datetime import datetime, timedelta
 
 api = Blueprint('api',__name__)
@@ -51,7 +50,6 @@ def signin():
 @api.route('/signout/',methods=['POST'])
 def signout():
     return "ok"
-# @token_required
 @api.route('/surveys/',methods=['GET','POST'])
 def survey_list():
     # 如果是GET请求，返回所有surveys
@@ -60,7 +58,6 @@ def survey_list():
         data = {
             "surveys":[ survery.to_dict() for survery in surverys]
         }
-        print(data)
         return jsonify(data)
     # 如果是POST请求，添加一个survey到 surveys中
     elif request.method =='POST':
@@ -87,6 +84,7 @@ def survey_list():
 
         '''
         data = request.get_json()
+        print(data)
         survey = Survey(name=data['name'])
         questions = []
         for question in data['questions']:
@@ -100,7 +98,6 @@ def survey_list():
         db.session.commit()
         return jsonify(survey.to_dict()),201
 
-# @token_required
 @api.route('/survey_admin/<int:id>/',methods=['GET','PUT','DELETE'])
 def survey_admin(id):
     survey = Survey.query.get(id)
@@ -141,6 +138,7 @@ def survery(id):
     # 如果是PUT请求，根据id修改指定的survey
     elif request.method == 'PUT':
         data = request.get_json()
+        print(data)
         for item in data['questions']:
             #  获得用户所选择的选项的id
             choice_id = item['choiced']
