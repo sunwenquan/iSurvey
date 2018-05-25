@@ -1,5 +1,21 @@
 
 
+
+
+# 安装uwsgi
+
+``pip install uwsgi``
+
+如果安装uwsgi时出错，请查看是否安装了python-dev，如果没有安装，请先执行
+
+``apt install build-essential python-dev``命令进行安装。
+
+更多信息，请参考官方文档：
+
+http://uwsgi-docs-cn.readthedocs.io/zh_CN/latest/WSGIquickstart.html
+
+http://uwsgi-docs.readthedocs.io/en/latest/
+
 ## 直接用命令行运行
 
 首先，需要写一个wsgi.py，在wsgi.py中实例化app
