@@ -20,10 +20,25 @@ $(document).ready(function(){
             // 遍历 questions
             $.each(survey.questions,function(i,question){
                 var header_question = document.createElement("header")
-                header_question.setAttribute("class","question")
-                header_question.innerText = question.text
-                section_survey.append(header_question)
+                header_question.setAttribute("class","question");
+                header_question.innerText = question.text;
+                section_survey.append(header_question);
                 //在 问题中添加选项
+                var section_choice = document.createElement("section");
+                section_choice.setAttribute("class","choice");
+                console.log(i + ".question.choices:"+question.choices);
+                $.each(question.choices,function(i,choice){
+                    console.log(i + ".:"+choice);
+                    var input = document.createElement("input");
+                    var lable = document.createElement("lable");
+                    input.setAttribute("type","radio")
+                    input.setAttribute("name",question.id)
+                    lable.append(input);
+                    lable.append(choice.text)
+                    section_choice.append(lable);
+
+                });
+                section_survey.append(section_choice);
 
 
             });
