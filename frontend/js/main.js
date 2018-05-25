@@ -33,6 +33,7 @@ $(document).ready(function(){
                     var lable = document.createElement("lable");
                     input.setAttribute("type","radio")
                     input.setAttribute("name",question.id)
+                    input.setAttribute("value",choice.id)
                     lable.append(input);
                     lable.append(choice.text)
                     section_choice.append(lable);
@@ -43,11 +44,60 @@ $(document).ready(function(){
 
             });
 
-            
-        })
-        // 添加一个标题
+        // 添加提交按钮
+        var submit = document.createElement("button")
+        submit.setAttribute("onclick","sublimt_survey(this)");
+        submit.setAttribute("id",section_survey.getAttribute("value"))
+        submit.innerText = "提交"
+        section_survey.append(submit)  
+        });
+        
     
 
     });
 
 });
+
+
+function sublimt_survey(object){
+    //问卷调查ID
+    var survey_id = object.getAttribute("id");
+    console.log(survey_id);
+    var url = "http://127.0.0.1/api/survey/"  + survey_id  + "/";
+    
+    //存放所有问题的id和问题被选中的choice的id
+    var question = []
+    
+    //获取所有被选中的input
+    var choices = $(":checked");
+    $.each(choices,function(i,choice){
+        // console.log(choice)
+        //添加到数组question中
+        question.push({
+            "question_id":choice.name,
+            "choiced":choice.value
+        });
+    });
+
+    //遍历被选中的input，从input中获得question_id,choice_id
+    // $.each()
+    console.log(url);
+   
+
+    //组装json数据
+    var data = JSON.stringify({
+        "questions":question
+    })
+    //通过PUT请求，提交填写的问卷
+    $.ajax({
+        url:url,
+        type:'PUT',
+        contentType:"application/json",
+        dataType:"json",
+        data:data,// 是json格式的数据
+        success:function(response){
+            console.log(response)
+        }
+
+    })
+}
