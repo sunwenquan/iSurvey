@@ -29,3 +29,28 @@ die-on-term = true
 使用uwsgi  survey.ini启动app
 
 注意：这里使用的soket
+
+## 在Nginx配置网关
+```
+server {
+    listen 80;
+    server_name 127.0.0.1;
+    location /api {
+        include uwsgi_params;
+        #proxy_pass http://127.0.0.1:5000;
+        uwsgi_pass unix:/home/gavin/sites/iSurvey/backend/survey.sock;
+        #uwsgi_pass 127.0.0.1:3333;
+    }
+
+    location / {
+        root  /home/gavin/sites/iSurvey/frontend/;
+        index index.html  index.htm;
+   }
+}
+```
+
+
+
+
+
+
